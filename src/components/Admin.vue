@@ -68,13 +68,12 @@ export default {
     NewPizza,
     LoginPage: Login
   },
-  data() {
-    return {
-      name: 'Pepe'
+  beforeRouteLeave: (to, from, next) => {
+    if(confirm('Remember to log out') == true) {
+      next();
+    } else {
+      next(false);
     }
-  },
-  beforeRouteEnter: (to, from, next) => {
-    next(vm => {alert('Hi ' + vm.name)});
   },
   computed: {
     ...mapGetters([
