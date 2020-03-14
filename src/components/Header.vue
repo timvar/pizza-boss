@@ -42,7 +42,7 @@
     >
     <div v-for="link in links" :key="link.name">
         
-    <router-link :to=link.link tag="li">
+    <router-link :to=link.link tag="span">
 
       <v-btn
         
@@ -84,7 +84,7 @@
   }
 </script>
 <style>
-li {
+span {
     text-decoration: none;
 }
 

@@ -10,7 +10,7 @@
     <div v-for="link in links"
         :key="link">
         
-      <router-link :to="link.path" tag="li">
+      <router-link :to="link.path" tag="span">
       <v-btn
         color="grey darken-3"
         text
@@ -54,7 +54,7 @@
   }
 </script>
 <style >
-li {
+span {
     text-decoration: none;
 }
 

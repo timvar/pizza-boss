@@ -1,12 +1,10 @@
 <template>
   <v-app>
-    <v-container>
     <pb-header />
-    </v-container>
-    <v-container>
+    <v-content>
+      <v-container fluid>
+
       <router-view></router-view>
-    </v-container>
-    <v-container>
       <v-row>
         <v-col cols="12" sm="12" md="4">
           <router-view name="ordering-guide"></router-view>
@@ -18,11 +16,10 @@
           <router-view name="history"></router-view>
         </v-col>
       </v-row>
-    </v-container>
+      </v-container>
+    </v-content>
 
-<v-container>
     <pb-footer />
-    </v-container>
   </v-app>
 </template>
 
