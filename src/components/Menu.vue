@@ -69,10 +69,11 @@
     </tbody>
   </v-simple-table>
   <p>Order total:</p>
-  <v-btn class="success">Order</v-btn>
+  <v-btn class="success" @click="addNewOrder">Order</v-btn>
   </div>
   <div v-else>
-    {{basketText}}
+    <p>{{basketText}}</p>
+    {{this.$store.state.orders}}
   </div>
   </v-col>
   </v-row>
@@ -87,29 +88,13 @@ export default {
     height:300,
     basket: [],
     basketText: 'Empty basket',
-    pizzas: [
-        {
-          name: 'Margarita',
-          options: [{
-            size: 9,
-            price: 6.95
-          }, {
-            size: 12,
-            price: 10.95
-          }]
-        },
-        {
-          name: 'Pepperoni',
-          options: [{
-            'size': 9,
-            'price': 7.95
-          }, {
-            'size': 12,
-            'price': 11.95
-          }]
-        },
-    ]
+    
 }),
+computed: {
+  pizzas() {
+    return this.$store.getters.pizzas;
+  }
+},
 methods: {
   addToBasket(item, option) {
     this.basket.push({
@@ -131,6 +116,11 @@ methods: {
   removeFromBasket(item) {
     this.basket.splice(this.basket.indexOf(item), 1);
   },
+  addNewOrder() {
+    this.$store.commit('addOrder', this.basket);
+    this.basket = [];
+    this.basketText = 'Thanks for the order';
+  }
 }
 }
 </script>

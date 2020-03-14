@@ -7,16 +7,21 @@
       justify="center"
       no-gutters
     >
+    <div v-for="link in links"
+        :key="link">
+        
+      <router-link :to="link.path" tag="li">
       <v-btn
-        v-for="link in links"
-        :key="link"
         color="grey darken-3"
         text
         rounded
         class="my-2"
       >
-        {{ link }}
+        {{ link.name }}
       </v-btn>
+      </router-link>
+
+    </div>
     </v-row>
   </v-footer>
 </template>
@@ -24,11 +29,34 @@
   export default {
     data: () => ({
       links: [
-        'Home',
-        'About Us',
-        'Admin',
-        'Contact',
+        {
+          path: '/menu',
+          name: 'Menu',
+        },
+        {
+          name: 'Home',
+          path: '/'
+        },
+        {
+          name: 'About Us',
+          path: '/about'
+        },
+        {
+          name: 'Admin',
+          path: '/admin'
+        },
+        {
+          name: 'Contact',
+          path: '/contact'
+        }
       ],
     }),
   }
 </script>
+<style >
+li {
+    text-decoration: none;
+}
+
+
+</style>

@@ -15,9 +15,9 @@
         <th class="text-left">Remove from menu </th>
       </tr>
     </thead>
-    <tbody >
+    <tbody v-for="pizza in pizzas" :key="pizza.name" >
       <tr >
-        <td>Pepperoni</td>
+        <td>{{pizza.name}}</td>
         <td><v-btn>x</v-btn></td>
       </tr>
     </tbody>
@@ -26,7 +26,7 @@
     </v-row>
     <v-row>
       <v-col>
-        <h3>Current orders:</h3>
+        <h3>Current orders: {{numberOfOrders}}</h3>
         <v-simple-table
     fixed-header
   >
@@ -51,13 +51,34 @@
   </v-simple-table>
       </v-col>
     </v-row>
+    <v-row>
+      <v-col cols="12" sm="12">
+        <login-page></login-page>
+      </v-col>
+    </v-row>
   </div>
 </template>
 <script>
-import NewPizza from './NewPizza'
+import NewPizza from './NewPizza.vue';
+import Login from './Login.vue';
+import { mapGetters } from 'vuex';
+
 export default {
   components: {
-    NewPizza
-  }
+    NewPizza,
+    LoginPage: Login
+  },
+  computed: {
+    ...mapGetters([
+      'numberOfOrders',
+      'pizzas'
+    ]),
+  pizzas() {
+      return this.$store.state.pizzas; 
+    },
+    numberOfOrders() {
+      return this.$store.getters.numberOfOrders;
+    }
+  },
 }
 </script>
