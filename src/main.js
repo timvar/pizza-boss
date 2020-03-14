@@ -6,6 +6,11 @@ import vuetify from './plugins/vuetify';
 
 Vue.config.productionTip = false
 
+router.beforeEach((to, from, next) => {
+  console.log('to:', to);
+  next();
+})
+
 new Vue({
   router,
   store,
