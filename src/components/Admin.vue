@@ -68,6 +68,14 @@ export default {
     NewPizza,
     LoginPage: Login
   },
+  data() {
+    return {
+      name: 'Pepe'
+    }
+  },
+  beforeRouteEnter: (to, from, next) => {
+    next(vm => {alert('Hi ' + vm.name)});
+  },
   computed: {
     ...mapGetters([
       'numberOfOrders',
