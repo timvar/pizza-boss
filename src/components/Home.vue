@@ -23,6 +23,11 @@
 </template>
 <script>
 export default {
+  computed: {
+    name() {
+      return 'foo' 
+    }
+  },
   methods: {
     goToMenu() {
       this.$router.push({name: 'menuLink'});
