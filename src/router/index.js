@@ -26,10 +26,6 @@ const routes = [
     path: '/admin',
     name: 'adminLink',
     component: Admin,
-    beforeEnter: (to, from, next) => {
-      alert('This is for authorized users only, please login.')
-      next();
-    }
   },
   {
     path: '/menu',
