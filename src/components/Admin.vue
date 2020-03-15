@@ -68,13 +68,6 @@ export default {
     NewPizza,
     LoginPage: Login
   },
-  beforeRouteLeave: (to, from, next) => {
-    if(confirm('Remember to log out') == true) {
-      next();
-    } else {
-      next(false);
-    }
-  },
   computed: {
     ...mapGetters([
       'numberOfOrders',
