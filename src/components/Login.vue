@@ -22,7 +22,7 @@
 </template>
 <script>
 import firebase from 'firebase';
-import {store} from '@/store';
+import store from '@/store';
 
 firebase.auth().onAuthStateChanged(user => {
   console.log('logged user', user);
@@ -53,7 +53,7 @@ methods: {
 },
   computed: {
     currentUser() {
-      return this.$store.getters.currentUser 
+      return this.$store.getters.currentUser
     }
   },
   

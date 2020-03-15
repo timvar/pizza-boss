@@ -32,15 +32,13 @@ export default new Vuex.Store({
   },
   getters: {
     pizzas: state => state.pizzas,
-    numberOfOrders: state => {
-      return state.orders.length;
-    },
+    numberOfOrders: state => state.orders.length,
     currentUser: state => state.currentUser
   },
   mutations: {
     addOrder: (state, orders) => state.orders.push(orders),
     userStatus: (state, user) => {
-      state.currentUser = user ? user : null
+      state.currentUser = user ? user.email : null
     }
   },
   actions: {

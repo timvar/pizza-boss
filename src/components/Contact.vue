@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-card>
+    <v-card flat>
       <v-card-title>Contact</v-card-title>
       <v-card-text>
         <strong>Pizza Boss</strong><br>
