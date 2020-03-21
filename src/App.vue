@@ -24,13 +24,18 @@
 </template>
 
 <script>
-import Header from './components/Header'
-import Footer from './components/Footer'
+import Header from './components/Header';
+import Footer from './components/Footer';
+import { dbMenuRef, dbOrdersRef } from './firebaseConfig';
 
 export default {
   components: {
     pbHeader: Header,
-    pbFooter: Footer,
+    pbFooter: Footer
+  },
+  created () {
+    this.$store.dispatch('setMenuRef', dbMenuRef);
+    this.$store.dispatch('setOrdersRef', dbOrdersRef);
   }
 
 };

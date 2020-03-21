@@ -24,13 +24,13 @@
       </v-list>
     </v-navigation-drawer>
 
-
     <v-app-bar
       app
       color="grey lighten-3"
       dark
     >
-      <v-app-bar-nav-icon color="grey"  
+      <v-app-bar-nav-icon
+color="grey"
       @click.stop="drawer = !drawer" />
       <v-toolbar-title class="text-uppercase grey--text darken-3">
         <span class="font-weight-light">Pizza</span>
@@ -41,11 +41,11 @@
       justify="start"
     >
     <div v-for="link in links" :key="link.name">
-        
+
     <router-link :to=link.link tag="span">
 
       <v-btn
-        
+
         color="grey darken-3"
         text
         rounded
@@ -59,29 +59,29 @@
     </v-app-bar>
 
     </div>
-    
+
 </template>
 
 <script>
-  export default {
-    props: {
-      source: String,
-    },
+export default {
+  props: {
+    source: String
+  },
 
-    data: () => ({
-      drawer: null,
-      links: [
-        {
-          name: 'Menu',
-          link: '/menu'
-        },
-        {
-          name: 'Home',
-          link: '/'
-        }
-      ],
-    }),
-  }
+  data: () => ({
+    drawer: null,
+    links: [
+      {
+        name: 'Menu',
+        link: '/menu'
+      },
+      {
+        name: 'Home',
+        link: '/'
+      }
+    ]
+  })
+};
 </script>
 <style>
 span {
@@ -89,4 +89,3 @@ span {
 }
 
 </style>
-

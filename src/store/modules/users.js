@@ -7,7 +7,7 @@ export default {
   },
   mutations: {
     userStatus: (state, user) => {
-      state.currentUser = user ? user.email : null
+      state.currentUser = user ? user.email : null;
     }
   },
   actions: {

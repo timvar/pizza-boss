@@ -5,7 +5,7 @@
       justify="start"
     >
     <div v-for="link in links" :key="link.name">
-        
+
     <router-link class="mx-3 grey--text text--darken-1 headline" :to=link.link tag="li">
 
       {{link.name}}
@@ -16,10 +16,10 @@
   </div>
 </template>
 <script>
-  export default {
-data() {
-  return {
-     links: [
+export default {
+  data() {
+    return {
+      links: [
         {
           name: 'Our History',
           link: '/history'
@@ -36,10 +36,10 @@ data() {
           name: 'Delivery',
           link: '/delivery'
         }
-      ],
+      ]
+    };
   }
-},
-  }
+};
 </script>
 <style>
 li {

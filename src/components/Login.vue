@@ -11,7 +11,7 @@
   <v-row>
     <v-col cols="12" xs="4">
 <v-text-field v-model="password" outlined label="Password"></v-text-field>
-      
+
     </v-col>
   </v-row>
 <v-btn class="primary mr-1" @click.prevent="login">Log in</v-btn>
@@ -36,26 +36,25 @@ firebase.auth().onAuthStateChanged(user => {
 export default {
   data() {
     return {
-    email: '',
-    password:''
+      email: '',
+      password: ''
+    };
+  },
+  methods: {
+    login() {
+      firebase.auth().signInWithEmailAndPassword(this.email, this.password).catch(err => {
+        console.log('Firebase auth error: ', err.message);
+      });
+    },
+    logout() {
+      firebase.auth().signOut().then(() => console.log('logged out')).catch(err => console.log(err.message));
     }
   },
-methods: {
-  login() {
-    firebase.auth().signInWithEmailAndPassword(this.email, this.password).catch(err => {
-      console.log('Firebase auth error: ', err.message);
-    });
-    
-  },
-  logout() {
-    firebase.auth().signOut().then(() => console.log('logged out')).catch(err => console.log(err.message))
-  }
-},
   computed: {
     currentUser() {
-      return this.$store.getters.currentUser
+      return this.$store.getters.currentUser;
     }
-  },
-  
-}
+  }
+
+};
 </script>

@@ -15,8 +15,8 @@
         <th class="text-left">Remove from menu </th>
       </tr>
     </thead>
-    <tbody v-for="pizza in pizzas" :key="pizza.name" >
-      <tr >
+    <tbody v-for="pizza in pizzas" :key="pizza.name">
+      <tr>
         <td>{{pizza.name}}</td>
         <td><v-btn>x</v-btn></td>
       </tr>
@@ -38,10 +38,10 @@
         <th>Price</th>
       </tr>
     </thead>
-    <tbody >
+    <tbody>
       <div class="order-number"><strong><em>
         Order Number: 1</em></strong></div>
-      <tr >
+      <tr>
         <td>Pepperoni</td>
         <td>9"</td>
         <td>1</td>
@@ -71,14 +71,15 @@ export default {
   computed: {
     ...mapGetters([
       'numberOfOrders',
-      'pizzas'
+      'pizzas',
+      'getOrders'
     ]),
-  pizzas() {
-      return this.$store.state.pizzas; 
+    pizzas () {
+      return this.$store.state.pizzas;
     },
-    numberOfOrders() {
+    numberOfOrders () {
       return this.$store.getters.numberOfOrders;
     }
-  },
-}
+  }
+};
 </script>

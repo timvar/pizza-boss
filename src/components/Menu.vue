@@ -14,7 +14,7 @@
       </tr>
     </thead>
     <tbody v-for="pizza in pizzas" :key="pizza.name">
-      <tr >
+      <tr>
         <td>{{pizza.name}}</td>
       </tr>
       <tr v-for="option in pizza.options" :key="option.size">
@@ -44,7 +44,7 @@
       </tr>
     </thead>
     <tbody v-for="item in basket" :key="item.name">
-      <tr >
+      <tr>
       <td>
         <v-btn small outlined color="green" @click="decreaseQty(item)">
           -
@@ -64,7 +64,7 @@
       </td>
       </tr>
       <tr>
-        
+
       </tr>
     </tbody>
   </v-simple-table>
@@ -81,46 +81,48 @@
   </div>
 </template>
 <script>
+import { dbOrdersRef } from '../firebaseConfig';
 export default {
   data: () => ({
     dense: false,
     fixedHeader: false,
-    height:300,
+    height: 300,
     basket: [],
-    basketText: 'Empty basket',
-    
-}),
-computed: {
-  pizzas() {
-    return this.$store.getters.pizzas;
-  }
-},
-methods: {
-  addToBasket(item, option) {
-    this.basket.push({
-      name: item.name,
-      price: option.price,
-      size: option.size,
-      quantity: 1
-    })
-  },
-  increaseQty(item) {
-    item.quantity += 1;
-  },
-  decreaseQty(item) {
-    item.quantity -= 1;
-    if (item.quantity < 1) {
-      this.removeFromBasket(item);
+    basketText: 'Empty basket'
+
+  }),
+  computed: {
+    pizzas () {
+      return this.$store.getters.pizzas;
     }
   },
-  removeFromBasket(item) {
-    this.basket.splice(this.basket.indexOf(item), 1);
-  },
-  addNewOrder() {
-    this.$store.commit('addOrder', this.basket);
-    this.basket = [];
-    this.basketText = 'Thanks for the order';
+  methods: {
+    addToBasket (item, option) {
+      this.basket.push({
+        name: item.name,
+        price: option.price,
+        size: option.size,
+        quantity: 1
+      });
+    },
+    increaseQty (item) {
+      item.quantity += 1;
+    },
+    decreaseQty (item) {
+      item.quantity -= 1;
+      if (item.quantity < 1) {
+        this.removeFromBasket(item);
+      }
+    },
+    removeFromBasket (item) {
+      this.basket.splice(this.basket.indexOf(item), 1);
+    },
+    addNewOrder () {
+    // this.$store.commit('addOrder', this.basket);
+      dbOrdersRef.push(this.basket);
+      this.basket = [];
+      this.basketText = 'Thanks for the order';
+    }
   }
-}
-}
+};
 </script>
