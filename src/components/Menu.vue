@@ -13,7 +13,7 @@
         <th class="text-left">Add to basket </th>
       </tr>
     </thead>
-    <tbody v-for="pizza in pizzas" :key="pizza.name">
+    <tbody v-for="pizza in pizzas" :key="pizza['.key']">
       <tr>
         <td>{{pizza.name}}</td>
       </tr>
@@ -68,7 +68,7 @@
       </tr>
     </tbody>
   </v-simple-table>
-  <p>Order total:</p>
+  <p>Order total: {{total}}</p>
   <v-btn class="success" @click="addNewOrder">Order</v-btn>
   </div>
   <div v-else>
@@ -82,6 +82,8 @@
 </template>
 <script>
 import { dbOrdersRef } from '../firebaseConfig';
+import { mapGetters } from 'vuex';
+
 export default {
   data: () => ({
     dense: false,
@@ -92,12 +94,18 @@ export default {
 
   }),
   computed: {
-    pizzas () {
-      return this.$store.getters.pizzas;
+    ...mapGetters(['pizzas']),
+    total() {
+      let totalCost = 0;
+      this.basket.forEach(item => {
+        totalCost += item.quantity * item.price;
+      });
+      return totalCost;
     }
+
   },
   methods: {
-    addToBasket (item, option) {
+    addToBasket(item, option) {
       this.basket.push({
         name: item.name,
         price: option.price,
@@ -105,19 +113,19 @@ export default {
         quantity: 1
       });
     },
-    increaseQty (item) {
+    increaseQty(item) {
       item.quantity += 1;
     },
-    decreaseQty (item) {
+    decreaseQty(item) {
       item.quantity -= 1;
       if (item.quantity < 1) {
         this.removeFromBasket(item);
       }
     },
-    removeFromBasket (item) {
+    removeFromBasket(item) {
       this.basket.splice(this.basket.indexOf(item), 1);
     },
-    addNewOrder () {
+    addNewOrder() {
     // this.$store.commit('addOrder', this.basket);
       dbOrdersRef.push(this.basket);
       this.basket = [];
