@@ -20,6 +20,10 @@ export default {
     */
     bindOrders: firestoreAction(({ bindFirestoreRef }) => {
       return bindFirestoreRef('orders', db.collection('orders'));
-    })
+    }),
+    removeOrderItem(_, orderId) {
+      db.collection('orders').doc(orderId).delete();
+    }
+
   }
 };
