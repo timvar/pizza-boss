@@ -1,4 +1,6 @@
-import { firebaseAction } from 'vuexfire';
+import { firestoreAction } from 'vuexfire';
+import { db } from '../../firebaseConfig';
+
 export default {
   state: {
     orders: []
@@ -11,8 +13,13 @@ export default {
     addOrder: (state, orders) => state.orders.push(orders)
   },
   actions: {
+    /*
     setOrdersRef: firebaseAction(({ bindFirebaseRef }, { ref }) => {
       bindFirebaseRef('orders', ref);
+    })
+    */
+    bindOrders: firestoreAction(({ bindFirestoreRef }) => {
+      return bindFirestoreRef('orders', db.collection('orders'));
     })
   }
 };

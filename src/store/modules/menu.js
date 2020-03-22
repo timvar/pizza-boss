@@ -1,4 +1,5 @@
-import { firebaseAction } from 'vuexfire/dist/packages/vuexfire/src';
+import { firestoreAction } from 'vuexfire';
+import { db } from '../../firebaseConfig';
 
 const state = {
   pizzas: []
@@ -13,9 +14,15 @@ const mutations = {
 };
 
 const actions = {
+  /*
   setMenuRef: firebaseAction(({ bindFirebaseRef }, { ref }) => {
     bindFirebaseRef('menuItem', ref);
   })
+  */
+  bindPizzas: firestoreAction(({ bindFirestoreRef }) => {
+    return bindFirestoreRef('pizzas', db.collection('pizzas'));
+  })
+
 };
 
 export default {
