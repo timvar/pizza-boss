@@ -1,19 +1,23 @@
 <template>
   <div>
-<p>Logged in as: {{currentUser}}</p>
+    <div>
+
+    <p v-if="!currentUser">Please login</p>
+    <p v-else>Logged in as: {{currentUser}}</p>
+    </div>
+
 <v-form>
   <v-row>
     <v-col cols="12" xs4>
-<v-text-field v-model="email" outlined label="Email"></v-text-field>
-
+      <v-text-field v-model="email" outlined label="Email"></v-text-field>
     </v-col>
   </v-row>
   <v-row>
     <v-col cols="12" xs="4">
-<v-text-field v-model="password" outlined label="Password"></v-text-field>
-
+      <v-text-field v-model="password" outlined label="Password"></v-text-field>
     </v-col>
   </v-row>
+
 <v-btn class="primary mr-1" @click.prevent="login">Log in</v-btn>
 <v-btn class="warning ml-1" @click.prevent="logout">Log out</v-btn>
 

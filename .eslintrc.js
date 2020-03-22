@@ -20,7 +20,12 @@ module.exports = {
   ],
   "rules": {
     'semi': ["error", "always"],
-    "space-before-function-paren": ["error", "never"],
+
+    "space-before-function-paren": ["error", {
+      "anonymous": "never",
+      "named": "never",
+      "asyncArrow": "always"
+    }],
     "vue/html-closing-bracket-spacing": [
       "error",
       {

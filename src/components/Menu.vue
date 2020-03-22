@@ -19,7 +19,7 @@
       </tr>
       <tr v-for="option in pizza.options" :key="option.size">
         <td>{{option.size}}</td>
-        <td>{{option.price}}</td>
+        <td>{{option.price | currency}}</td>
         <td>
           <v-btn @click="addToBasket(pizza, option)">
             +
@@ -60,7 +60,7 @@
         {{item.name}} {{item.size}}
       </td>
       <td>
-        {{item.price * item.quantity}}
+        {{item.price * item.quantity | currency}}
       </td>
       </tr>
       <tr>
@@ -68,7 +68,7 @@
       </tr>
     </tbody>
   </v-simple-table>
-  <p>Order total: {{total}}</p>
+  <p>Order total: {{total | currency}}</p>
   <v-btn class="success" @click="addNewOrder">Order</v-btn>
   </div>
   <div v-else>
