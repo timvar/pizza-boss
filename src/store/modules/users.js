@@ -14,5 +14,6 @@ export default {
     setUser: ({ commit }, user) => {
       commit('userStatus', user);
     }
-  }
+  },
+  namespaced: TextTrackCueList
 };

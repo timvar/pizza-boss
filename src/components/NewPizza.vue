@@ -34,13 +34,13 @@ label='Price'
         outlined=""
         v-model="newPizza.options[1].price">
         </v-text-field>
-      <v-btn class="success" block @click="addMenuItem">Add</v-btn>
+      <v-btn class="success" block @click="add">Add</v-btn>
       </v-col>
     </v-row>
   </v-form>
 </template>
 <script>
-import { dbMenuRef } from '../firebaseConfig';
+import { mapActions } from 'vuex';
 
 export default {
   data() {
@@ -60,8 +60,12 @@ export default {
     };
   },
   methods: {
-    addMenuItem() {
-      dbMenuRef.push(this.newPizza);
+    ...mapActions('menu', ['addMenuItem']),
+    add() {
+      console.log('addMenuItem', this.newPizza);
+      this.addMenuItem();
+
+      // dbMenuRef.push(this.newPizza);
     }
   }
 };

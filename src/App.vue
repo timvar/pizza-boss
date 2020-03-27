@@ -26,16 +26,16 @@
 <script>
 import Header from './components/Header';
 import Footer from './components/Footer';
-import { dbMenuRef, dbOrdersRef } from './firebaseConfig';
+// import { dbMenuRef, dbOrdersRef } from './firebaseConfig';
 
 export default {
   components: {
     pbHeader: Header,
     pbFooter: Footer
   },
-  created () {
-    this.$store.dispatch('setMenuRef', dbMenuRef);
-    this.$store.dispatch('setOrdersRef', dbOrdersRef);
+  created() {
+    // this.$store.dispatch('setMenuRef', dbMenuRef);
+    // this.$store.dispatch('setOrdersRef', dbOrdersRef);
   }
 
 };

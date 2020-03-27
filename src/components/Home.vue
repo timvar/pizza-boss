@@ -23,18 +23,18 @@
 </template>
 <script>
 export default {
-  data () {
+  data() {
     return {
       test: 'value'
     };
   },
   computed: {
-    name () {
+    name() {
       return 'foo';
     }
   },
   methods: {
-    goToMenu () {
+    goToMenu() {
       this.$router.push({ name: 'menuLink' });
     }
   }

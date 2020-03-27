@@ -2,8 +2,8 @@
   <div>
     <div>
 
-    <p v-if="!currentUser">Please login</p>
-    <p v-else>Logged in as: {{currentUser}}</p>
+    <p v-if="!currUser">Please login</p>
+    <p v-else>Logged in as: {{currUser}}</p>
     </div>
 
 <v-form>
@@ -27,13 +27,14 @@
 <script>
 import firebase from 'firebase';
 import store from '@/store';
+import { mapGetters, mapActions } from 'vuex';
 
 firebase.auth().onAuthStateChanged(user => {
   console.log('logged user', user);
   if (user) {
-    store.dispatch('setUser', user);
+    store.dispatch('users/setUser', user);
   } else {
-    store.dispatch('setUser', null);
+    store.dispatch('users/setUser', null);
   }
 });
 
@@ -45,6 +46,7 @@ export default {
     };
   },
   methods: {
+    ...mapActions('users', ['setUser']),
     login() {
       firebase.auth().signInWithEmailAndPassword(this.email, this.password).catch(err => {
         console.log('Firebase auth error: ', err.message);
@@ -55,8 +57,9 @@ export default {
     }
   },
   computed: {
-    currentUser() {
-      return this.$store.getters.currentUser;
+    ...mapGetters('users', ['currentUser']),
+    currUser() {
+      return this.currentUser;
     }
   }
 

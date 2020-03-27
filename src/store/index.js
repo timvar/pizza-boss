@@ -9,6 +9,7 @@ import { vuexfireMutations } from 'vuexfire';
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+  namespaced: true,
   mutations: { ...vuexfireMutations },
   modules: {
     menu,

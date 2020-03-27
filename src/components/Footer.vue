@@ -8,8 +8,8 @@
       no-gutters
     >
     <div
-v-for="link in links"
-        :key="link">
+v-for="(link,index) in links"
+        :key="`link-${index}`">
 
       <router-link :to="link.path" tag="span">
       <v-btn

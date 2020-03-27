@@ -19,7 +19,7 @@
     <tbody v-for="pizza in pizzas" :key="pizza.name">
       <tr>
         <td>{{pizza.name}}</td>
-        <td><v-btn @click="removeMenuItem(item['.key'])">x</v-btn></td>
+        <td><v-btn @click="deleteMenuItem(item['.key'])">x</v-btn></td>
       </tr>
     </tbody>
   </v-simple-table>
@@ -42,7 +42,7 @@
     </thead>
     <tbody>
       <div class="order-number"><strong><em>
-        Order Number: {{index + 1}}</em></strong><v-btn @click="remove(orders['.key'])">x</v-btn></div>
+        Order Number: {{index + 1}}</em></strong><v-btn @click="deleteOrderItem(orders['.key'])">x</v-btn></div>
       <tr v-for="orderItems in orders['value']" :key="orderItems['.key']">
         <td>{{orderItems.name}}</td>
         <td>{{orderItems.size}}"</td>
@@ -65,7 +65,6 @@
 import NewPizza from './NewPizza.vue';
 import Login from './Login.vue';
 import { mapGetters, mapActions } from 'vuex';
-import { dbMenuRef } from '../firebaseConfig';
 
 export default {
   components: {
@@ -73,11 +72,15 @@ export default {
     LoginPage: Login
   },
   computed: {
-    ...mapGetters([
-      'numberOfOrders',
-      'pizzas',
-      'getOrders',
+    ...mapGetters('users', [
       'currentUser'
+    ]),
+    ...mapGetters('menu', [
+      'pizzas'
+    ]),
+    ...mapGetters('orders', [
+      'numberOfOrders',
+      'getOrders'
     ]),
     pizzas() {
       return this.$store.state.pizzas;
@@ -88,10 +91,11 @@ export default {
   },
   methods: {
     ...mapActions('orders', ['removeOrderItem']),
-    removeMenuItem(key) {
-      dbMenuRef.child(key).remove();
+    ...mapActions('menu', ['removeMenuItem']),
+    deleteMenuItem(menuId) {
+      this.removeMenuItem(menuId);
     },
-    remove(orderId) {
+    deleteOrderItem(orderId) {
       this.removeOrderItem(orderId);
     }
   }

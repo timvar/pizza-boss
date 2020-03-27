@@ -21,6 +21,10 @@ const actions = {
   */
   bindPizzas: firestoreAction(({ bindFirestoreRef }) => {
     return bindFirestoreRef('pizzas', db.collection('pizzas'));
+  }),
+  addMenuItem: firestoreAction((_, menuItem) => {
+    console.log(menuItem);
+    // return db.collection('menu').add(menuItem);
   })
 
 };
@@ -29,5 +33,6 @@ export default {
   state,
   getters,
   mutations,
-  actions
+  actions,
+  namespaced: TextTrackCueList
 };
