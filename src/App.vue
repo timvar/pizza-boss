@@ -27,16 +27,30 @@
 import Header from './components/Header';
 import Footer from './components/Footer';
 // import { dbMenuRef, dbOrdersRef } from './firebaseConfig';
+import { mapActions } from 'vuex';
 
 export default {
   components: {
     pbHeader: Header,
     pbFooter: Footer
   },
-  created() {
+  async created() {
     // this.$store.dispatch('setMenuRef', dbMenuRef);
     // this.$store.dispatch('setOrdersRef', dbOrdersRef);
+    try {
+      await this.bindPizzas();
+      await this.bindOrders();
+    } catch (err) {
+      console.error(`${err.name}: ${err.message}`);
+    } finally {
+      console.log('state', this.$store.state);
+    }
+  },
+  methods: {
+    ...mapActions('menu', [
+      'bindPizzas']),
+    ...mapActions('orders', [
+      'bindOrders'])
   }
-
 };
 </script>

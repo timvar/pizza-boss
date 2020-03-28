@@ -19,12 +19,12 @@ const actions = {
     bindFirebaseRef('menuItem', ref);
   })
   */
+
   bindPizzas: firestoreAction(({ bindFirestoreRef }) => {
     return bindFirestoreRef('pizzas', db.collection('pizzas'));
   }),
   addMenuItem: firestoreAction((_, menuItem) => {
-    console.log(menuItem);
-    // return db.collection('menu').add(menuItem);
+    return db.collection('menu').add(menuItem);
   })
 
 };

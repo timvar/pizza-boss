@@ -34,7 +34,7 @@ label='Price'
         outlined=""
         v-model="newPizza.options[1].price">
         </v-text-field>
-      <v-btn class="success" block @click="add">Add</v-btn>
+      <v-btn class="success" block @click="addPizza">Add</v-btn>
       </v-col>
     </v-row>
   </v-form>
@@ -61,11 +61,8 @@ export default {
   },
   methods: {
     ...mapActions('menu', ['addMenuItem']),
-    add() {
-      console.log('addMenuItem', this.newPizza);
-      this.addMenuItem();
-
-      // dbMenuRef.push(this.newPizza);
+    addPizza() {
+      this.addMenuItem(this.newPizza);
     }
   }
 };
