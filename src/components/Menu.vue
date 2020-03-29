@@ -21,8 +21,9 @@
         <td>{{option.size}}</td>
         <td>{{option.price | currency}}</td>
         <td>
-          <v-btn @click="addToBasket(pizza, option)">
-            +
+          <v-btn x-large icon color="green darken-3" @click="addToBasket(pizza, option)">
+                    <v-icon>mdi-plus-circle</v-icon>
+
           </v-btn>
         </td>
       </tr>
@@ -73,12 +74,9 @@
   </div>
   <div v-else>
     <p>{{basketText}}</p>
-    {{this.$store.state.orders}}
   </div>
   </v-col>
   </v-row>
-  {{ basket}}
-  {{pizzas}}
   </div>
 </template>
 <script>
