@@ -78,11 +78,12 @@
   </v-col>
   </v-row>
   {{ basket}}
+  {{pizzas}}
   </div>
 </template>
 <script>
-import { dbOrdersRef } from '../firebaseConfig';
-import { mapGetters } from 'vuex';
+// import { dbOrdersRef } from '../firebaseConfig';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   data: () => ({
@@ -94,7 +95,7 @@ export default {
 
   }),
   computed: {
-    ...mapGetters(['pizzas']),
+    ...mapGetters('menu', ['pizzas']),
     total() {
       let totalCost = 0;
       this.basket.forEach(item => {
@@ -105,6 +106,8 @@ export default {
 
   },
   methods: {
+    ...mapActions('orders', ['addOrder']),
+    ...mapActions('menu', ['bindPizzas']),
     addToBasket(item, option) {
       this.basket.push({
         name: item.name,
@@ -127,7 +130,8 @@ export default {
     },
     addNewOrder() {
     // this.$store.commit('addOrder', this.basket);
-      dbOrdersRef.push(this.basket);
+      this.addOrder(this.basket);
+      // dbOrdersRef.push(this.basket);
       this.basket = [];
       this.basketText = 'Thanks for the order';
     }

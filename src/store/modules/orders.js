@@ -1,4 +1,4 @@
-import { firestoreAction } from 'vuexfire';
+import { firestoreAction, vuexfireMutations } from 'vuexfire';
 import { db } from '../../firebaseConfig';
 
 export default {
@@ -9,9 +9,7 @@ export default {
     numberOfOrders: state => state.orders.length,
     getOrders: state => state.orders
   },
-  mutations: {
-    addOrder: (state, orders) => state.orders.push(orders)
-  },
+  mutations: vuexfireMutations,
   actions: {
     /*
     setOrdersRef: firebaseAction(({ bindFirebaseRef }, { ref }) => {
@@ -21,10 +19,12 @@ export default {
     bindOrders: firestoreAction(({ bindFirestoreRef }) => {
       return bindFirestoreRef('orders', db.collection('orders'));
     }),
+    addOrder: firestoreAction((_, basket) => {
+      return db.collection('orders').add(basket);
+    }),
     removeOrderItem: firestoreAction((_, orderId) => {
       db.collection('orders').doc(orderId).delete();
     })
-
   },
   namespaced: TextTrackCueList
 };
