@@ -13,7 +13,7 @@
         <th class="text-left">Add to basket </th>
       </tr>
     </thead>
-    <tbody v-for="pizza in pizzas" :key="pizza['.key']">
+    <tbody v-for="(pizza, index) in pizzas" :key="`pizza-${index}`">
       <tr>
         <td>{{pizza.name}}</td>
       </tr>
@@ -44,17 +44,17 @@
         <th class="text-left">Total </th>
       </tr>
     </thead>
-    <tbody v-for="item in basket" :key="item.name">
+    <tbody v-for="(item,index) in basket" :key="`item-${index}`">
       <tr>
       <td>
-        <v-btn small outlined color="green" @click="decreaseQty(item)">
-          -
+        <v-btn icon color="red darken-3" @click="decreaseQty(item)">
+          <v-icon>mdi-minus-circle-outline</v-icon>
         </v-btn>
         <span>
           {{item.quantity}}
         </span>
-        <v-btn small outlined color="green" @click="increaseQty(item)">
-          +
+        <v-btn icon color="green darken-3" @click="increaseQty(item)">
+          <v-icon>mdi-plus-circle</v-icon>
         </v-btn>
       </td>
       <td>
@@ -70,7 +70,9 @@
     </tbody>
   </v-simple-table>
   <p>Order total: {{total | currency}}</p>
-  <v-btn class="success" @click="addNewOrder">Order</v-btn>
+  <v-btn class="green darken-3 white--text" @click="addNewOrder">Order
+    <v-icon class="ml-3">mdi-send</v-icon>
+  </v-btn>
   </div>
   <div v-else>
     <p>{{basketText}}</p>
