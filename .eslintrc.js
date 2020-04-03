@@ -5,7 +5,6 @@ module.exports = {
   },
   extends: [
     'plugin:vue/essential',
-    'standard'
   ],
   globals: {
     Atomics: 'readonly',
@@ -22,7 +21,7 @@ module.exports = {
     'semi': ["error", "always"],
 
     "space-before-function-paren": ["error", {
-      "anonymous": "never",
+      "anonymous": "always",
       "named": "never",
       "asyncArrow": "always"
     }],
