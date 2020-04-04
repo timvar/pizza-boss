@@ -29,6 +29,7 @@
       </tr>
     </tbody>
   </v-simple-table>
+  <menu-item></menu-item>
   </v-col>
   <v-col>
     <!-- Shopping basket -->
@@ -84,8 +85,11 @@
 <script>
 // import { dbOrdersRef } from '../firebaseConfig';
 import { mapGetters, mapActions } from 'vuex';
+import MenuItem from './MenuItem';
 
-export default {
+export default {components: {
+  MenuItem
+},
   data: () => ({
     dense: false,
     fixedHeader: false,
