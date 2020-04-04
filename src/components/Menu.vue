@@ -1,36 +1,9 @@
 <template>
 <div>
   <v-row>
-    <v-col>
-  <v-simple-table
-    :dense="dense"
-    fixed-header
-  >
-    <thead>
-      <tr>
-        <th class="text-left">Size </th>
-        <th class="text-left">Price </th>
-        <th class="text-left">Add to basket </th>
-      </tr>
-    </thead>
-    <tbody v-for="(pizza, index) in pizzas" :key="`pizza-${index}`">
-      <tr>
-        <td>{{pizza.name}}</td>
-      </tr>
-      <tr v-for="option in pizza.options" :key="option.size">
-        <td>{{option.size}}</td>
-        <td>{{option.price | currency}}</td>
-        <td>
-          <v-btn x-large icon color="green darken-3" @click="addToBasket(pizza, option)">
-                    <v-icon>mdi-plus-circle</v-icon>
-
-          </v-btn>
-        </td>
-      </tr>
-    </tbody>
-  </v-simple-table>
-  <menu-item></menu-item>
-  </v-col>
+    <v-col v-for="(pizza, index) in pizzas" :key="`pizza-${index}`">
+      <menu-item :item="pizza"></menu-item>
+    </v-col>
   <v-col>
     <!-- Shopping basket -->
     <div v-if="basket.length > 0">

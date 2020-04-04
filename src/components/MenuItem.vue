@@ -9,11 +9,11 @@
     ></v-img>
 
     <v-card-title>
-      {{menuItem.name}}
+      {{item.name}}
     </v-card-title>
 
     <v-card-subtitle>
-      {{menuItem.description}}
+      {{item.description}}
     </v-card-subtitle>
     <v-card-text>
         <table>
@@ -22,7 +22,7 @@
       <tbody>
         <tr>
           <td class="text-right">Standard:</td>
-          <td class="text-right">{{menuItem.prices.standard}} </td>
+          <td class="text-right">{{menuItem.prices.standard | currency}} </td>
           <td>
             <v-btn x-large icon color="green darken-3" @click="addToBasket(pizza, option)">
               <v-icon>mdi-plus-circle</v-icon>
@@ -31,7 +31,7 @@
         </tr>
         <tr>
           <td class="text-right">Family:</td>
-          <td class="text-right">{{menuItem.prices.family}} </td>
+          <td class="text-right">{{menuItem.prices.family | currency}} </td>
           <td>
             <v-btn x-large icon color="green darken-3" @click="addToBasket(pizza, option)">
               <v-icon>mdi-plus-circle</v-icon>
@@ -45,6 +45,12 @@
 </template>
 <script>
 export default {
+  props: {
+    item: {
+      type: Object,
+      default: () => {}
+      }
+  },
   data() {
     return {
       menuItem: {
